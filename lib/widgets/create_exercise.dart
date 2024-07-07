@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gymapp/constant/spaces.dart';
-import 'package:gymapp/provider/providers.dart';
+import 'package:gymapp/models/excercise.dart';
+import 'package:gymapp/models/workout.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class CreateExercise extends StatelessWidget {
+  final NotifierProvider<Workout, List<Exercise>> selectedWorkoutProvider;
   final _formKey = GlobalKey<FormBuilderState>();
 
-  CreateExercise({super.key});
+  CreateExercise({super.key, required this.selectedWorkoutProvider});
 
   void onSetsAddRemovePressed(int incrementValue) {
     _formKey.currentState!.fields['sets']!.didChange(
@@ -143,7 +145,7 @@ class CreateExercise extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.saveAndValidate()) {
-                        ref.read(specificWorkoutProvider.notifier).addExercise(
+                        ref.read(selectedWorkoutProvider.notifier).addExercise(
                               name: _formKey.currentState!.value['name']
                                   .toString(),
                               sets: int.parse(_formKey

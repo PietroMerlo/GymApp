@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gymapp/pages/workout_page.dart';
-import 'package:gymapp/widgets/create_exercise.dart';
+import 'package:gymapp/provider/providers.dart';
 
 class BottomBarHomePage extends StatefulWidget {
   const BottomBarHomePage({super.key});
@@ -11,22 +11,17 @@ class BottomBarHomePage extends StatefulWidget {
 
 class _BottomBarHomePageState extends State<BottomBarHomePage> {
   int pageIndex = 0;
-  void onCreateExercisePressed(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => CreateExercise()),
-    );
-  }
 
   Widget buildPage() {
     switch (pageIndex) {
       case 0:
-        return const WorkoutPage();
+        return WorkoutPage(specificWorkoutProvider);
       case 1:
-        return Container(color: Colors.blue);
+        return WorkoutPage(tuesdayWorkoutProvider);
       case 2:
-        return Container(color: Colors.green);
+        return WorkoutPage(wednesdayWorkoutProvider);
       case 3:
-        return Container(color: Colors.green);
+        return Container(color: Colors.red);
       case 4:
         return Container(color: Colors.green);
       case 5:

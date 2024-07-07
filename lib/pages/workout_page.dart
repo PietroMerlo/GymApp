@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gymapp/constant/spaces.dart';
-import 'package:gymapp/provider/providers.dart';
+import 'package:gymapp/models/excercise.dart';
+import 'package:gymapp/models/workout.dart';
+
 import 'package:gymapp/widgets/create_exercise.dart';
 
 class WorkoutPage extends ConsumerWidget {
-  const WorkoutPage({super.key});
+  final NotifierProvider<Workout, List<Exercise>> selectedWorkoutProvider;
+
+  const WorkoutPage(this.selectedWorkoutProvider, {super.key});
 
   void onCreateExercisePressed(BuildContext context) {
     Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) => CreateExercise()),
+      MaterialPageRoute(
+          builder: (context) =>
+              CreateExercise(selectedWorkoutProvider: selectedWorkoutProvider)),
     );
   }
 
@@ -26,7 +32,7 @@ class WorkoutPage extends ConsumerWidget {
       ),
       body: Consumer(
         builder: (context, ref, child) {
-          final workout = ref.watch(specificWorkoutProvider);
+          final workout = ref.watch(selectedWorkoutProvider);
 
           return workout.isEmpty
               ? SizedBox(
@@ -81,7 +87,7 @@ class WorkoutPage extends ConsumerWidget {
                                           ElevatedButton(
                                             onPressed: () {
                                               ref
-                                                  .read(specificWorkoutProvider
+                                                  .read(selectedWorkoutProvider
                                                       .notifier)
                                                   .removeExercise(exersise.id);
 

@@ -9,6 +9,9 @@ import 'package:uuid/uuid.dart';
 const _uuid = Uuid();
 
 class Workout extends Notifier<List<Exercise>> {
+  final int day;
+  Workout({required this.day});
+
   @override
   List<Exercise> build() {
     return [];
