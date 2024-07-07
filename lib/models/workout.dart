@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 const _uuid = Uuid();
 
 class Workout extends Notifier<List<Exercise>> {
-  final int day;
+  final String day;
   Workout({required this.day});
 
   @override
@@ -20,7 +20,7 @@ class Workout extends Notifier<List<Exercise>> {
   Future<void> initialize() async {
     final path = await _localPath;
 
-    final file = File('$path/workout.json');
+    final file = File('$path/workout$day.json');
 
     if (await file.exists()) {
       state = (jsonDecode(await file.readAsString()) as List<dynamic>)
@@ -67,7 +67,7 @@ class Workout extends Notifier<List<Exercise>> {
   Future<void> _writeData() async {
     final path = await _localPath;
 
-    final file = File('$path/workout.json');
+    final file = File('$path/workout$day.json');
 
     await file.writeAsString(
       jsonEncode(state.map((exercise) => exercise.toMap()).toList()),

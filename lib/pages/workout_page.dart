@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gymapp/constant/spaces.dart';
 import 'package:gymapp/models/excercise.dart';
 import 'package:gymapp/models/workout.dart';
-
 import 'package:gymapp/widgets/create_exercise.dart';
 
 class WorkoutPage extends ConsumerWidget {
@@ -21,9 +20,11 @@ class WorkoutPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final String day = ref.watch(selectedWorkoutProvider.notifier).day;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GymApp'),
+        title: Text("$day workout"),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => onCreateExercisePressed(context),

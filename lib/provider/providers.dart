@@ -2,11 +2,26 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gymapp/models/excercise.dart';
 import 'package:gymapp/models/workout.dart';
 
-final specificWorkoutProvider =
-    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: 0));
+final mondayWorkoutProvider =
+    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: "monday"));
 
 final tuesdayWorkoutProvider =
-    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: 1));
+    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: "tuesday"));
 
 final wednesdayWorkoutProvider =
-    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: 2));
+    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: "wednesday"));
+
+final thursdayWorkoutProvider =
+    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: "thursday"));
+
+final fridayWorkoutProvider =
+    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: "friday"));
+
+final saturdayWorkoutProvider =
+    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: "saturday"));
+
+final sundayWorkoutProvider =
+    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: "sunday"));
+
+final defaultWorkoutProvider =
+    NotifierProvider<Workout, List<Exercise>>(() => Workout(day: "default"));

@@ -15,21 +15,21 @@ class _BottomBarHomePageState extends State<BottomBarHomePage> {
   Widget buildPage() {
     switch (pageIndex) {
       case 0:
-        return WorkoutPage(specificWorkoutProvider);
+        return WorkoutPage(mondayWorkoutProvider);
       case 1:
         return WorkoutPage(tuesdayWorkoutProvider);
       case 2:
         return WorkoutPage(wednesdayWorkoutProvider);
       case 3:
-        return Container(color: Colors.red);
+        return WorkoutPage(thursdayWorkoutProvider);
       case 4:
-        return Container(color: Colors.green);
+        return WorkoutPage(fridayWorkoutProvider);
       case 5:
-        return Container(color: Colors.green);
+        return WorkoutPage(saturdayWorkoutProvider);
       case 6:
-        return Container(color: Colors.green);
+        return WorkoutPage(sundayWorkoutProvider);
       default:
-        return Container(color: Colors.grey);
+        return WorkoutPage(defaultWorkoutProvider);
     }
   }
 
@@ -38,7 +38,7 @@ class _BottomBarHomePageState extends State<BottomBarHomePage> {
     return Scaffold(
       appBar: AppBar(
           title: const Text(
-        "Bottom navigation bar",
+        "GymApp 2.0",
       )),
       bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.amber[800],

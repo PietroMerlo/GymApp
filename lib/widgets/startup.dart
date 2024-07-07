@@ -20,7 +20,7 @@ class Startup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, child) {
-      initialize(context, ref.read(specificWorkoutProvider.notifier));
+      initialize(context, ref.read(mondayWorkoutProvider.notifier));
 
       return Container(
         color: Colors.white,
