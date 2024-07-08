@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gymapp/constant/spaces.dart';
-import 'package:gymapp/models/excercise.dart';
-import 'package:gymapp/models/workout.dart';
+import 'package:uitest/constant/spaces.dart';
+import 'package:uitest/models/excercise.dart';
+import 'package:uitest/models/workout.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
 class CreateExercise extends StatelessWidget {

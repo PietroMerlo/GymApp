@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gymapp/pages/workout_page.dart';
-import 'package:gymapp/provider/providers.dart';
+import 'package:uitest/pages/workout_page.dart';
+import 'package:uitest/provider/providers.dart';
 
 class BottomBarHomePage extends StatefulWidget {
   const BottomBarHomePage({super.key});

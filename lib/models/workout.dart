@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:gymapp/models/excercise.dart';
+import 'package:uitest/models/excercise.dart';
 import 'package:uuid/uuid.dart';
 
 const _uuid = Uuid();

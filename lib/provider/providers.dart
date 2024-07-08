@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gymapp/models/excercise.dart';
-import 'package:gymapp/models/workout.dart';
+import 'package:uitest/models/excercise.dart';
+import 'package:uitest/models/workout.dart';
 
 final mondayWorkoutProvider =
     NotifierProvider<Workout, List<Exercise>>(() => Workout(day: "monday"));

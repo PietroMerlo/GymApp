@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gymapp/models/workout.dart';
-import 'package:gymapp/provider/providers.dart';
-import 'package:gymapp/widgets/BottomBarHomePage.dart';
+import 'package:uitest/models/workout.dart';
+import 'package:uitest/provider/providers.dart';
+import 'package:uitest/widgets/BottomBarHomePage.dart';
 
 class Startup extends StatelessWidget {
   const Startup({super.key});
-
+  //TODO inizializza tutti i giorni non solo il lunedì
   Future<void> initialize(BuildContext context, Workout workout) async {
     await workout.initialize();
 
