@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:uitest/constant/spaces.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uuid/uuid.dart';
 
@@ -78,5 +79,38 @@ class Workout extends Notifier<List<Exercise>> {
     final directory = await getApplicationDocumentsDirectory();
 
     return directory.path;
+  }
+
+  Widget toRecap() {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView(
+            children: state
+                .map((exersise) => ListTile(
+                      title: Center(
+                          child: Text(
+                        exersise.name,
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 122, 78, 130)),
+                      )),
+                      subtitle: Row(
+                        children: [
+                          Expanded(child: Container()),
+                          Text('Sets: ${exersise.sets}'),
+                          kMediumHorizontalSpacing,
+                          Text('Reps: ${exersise.reps}'),
+                          kMediumHorizontalSpacing,
+                          Text('Weight: ${exersise.weight} kg'),
+                          Expanded(child: Container()),
+                        ],
+                      ),
+                    ))
+                .toList(),
+          ),
+        ),
+      ],
+    );
+    ;
   }
 }

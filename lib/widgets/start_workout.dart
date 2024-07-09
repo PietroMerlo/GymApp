@@ -51,7 +51,9 @@ class StartWorkout extends StatelessWidget {
   //TODO implemente workoutRecap
   Widget workoutRecap(
       NotifierProvider<Workout, List<Exercise>> currentWorkout) {
-    return const Text("WorkoutRecap");
+    return Consumer(builder: (context, ref, child) {
+      return ref.read(currentWorkout.notifier).toRecap();
+    });
   }
 
   @override
