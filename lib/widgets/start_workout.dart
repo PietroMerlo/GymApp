@@ -63,9 +63,10 @@ class StartWorkout extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text("Working out..."),
-        ),
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: Consumer(builder: (context, ref, child) {
+              return Text(ref.watch(startedWorkoutProvider.notifier).day);
+            })),
         body: Padding(
             padding: const EdgeInsets.all(10),
             child: (isLarge)

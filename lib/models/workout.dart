@@ -82,34 +82,55 @@ class Workout extends Notifier<List<Exercise>> {
   }
 
   Widget toRecap() {
-    return Column(
-      children: [
-        Expanded(
-          child: ListView(
-            children: state
-                .map((exersise) => ListTile(
-                      title: Center(
-                          child: Text(
-                        exersise.name,
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 122, 78, 130)),
-                      )),
-                      subtitle: Row(
-                        children: [
-                          Expanded(child: Container()),
-                          Text('Sets: ${exersise.sets}'),
-                          kMediumHorizontalSpacing,
-                          Text('Reps: ${exersise.reps}'),
-                          kMediumHorizontalSpacing,
-                          Text('Weight: ${exersise.weight} kg'),
-                          Expanded(child: Container()),
-                        ],
-                      ),
-                    ))
-                .toList(),
-          ),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          width: 5,
+          color: Colors.white,
         ),
-      ],
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
+        color: Color.fromARGB(255, 206, 148, 213),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+          children: [
+            const Text(
+              "Today's Workout",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            Expanded(
+              child: ListView(
+                children: state
+                    .map((exersise) => ListTile(
+                          title: Center(
+                              child: Text(
+                            exersise.name,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 122, 78, 130)),
+                          )),
+                          subtitle: Row(
+                            children: [
+                              Expanded(child: Container()),
+                              Text('Sets: ${exersise.sets}',
+                                  style: const TextStyle(color: Colors.black)),
+                              kMediumHorizontalSpacing,
+                              Text('Reps: ${exersise.sets}',
+                                  style: const TextStyle(color: Colors.black)),
+                              kMediumHorizontalSpacing,
+                              Text('Weight: ${exersise.sets} kg',
+                                  style: const TextStyle(color: Colors.black)),
+                              Expanded(child: Container()),
+                            ],
+                          ),
+                        ))
+                    .toList(),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
     ;
   }
