@@ -89,7 +89,7 @@ class Workout extends Notifier<List<Exercise>> {
           color: Colors.white,
         ),
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        color: Color.fromARGB(255, 206, 148, 213),
+        color: const Color.fromARGB(255, 206, 148, 213),
       ),
       child: Padding(
         padding: const EdgeInsets.all(5.0),

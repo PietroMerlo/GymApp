@@ -32,12 +32,17 @@ class StartWorkout extends StatelessWidget {
   Widget buildLarge(
       NotifierProvider<Workout, List<Exercise>> currentWorkoutProvider) {
     return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.max,
         children: [
           Expanded(
-              child: workoutRecap(
-                  currentWorkoutProvider) /*workoutShow(currentWorkout)*/),
+              child: Row(
+            children: [
+              Expanded(flex: 2, child: SizedBox()),
+              Expanded(flex: 4, child: workoutRecap(currentWorkoutProvider)),
+              Expanded(flex: 2, child: SizedBox()),
+            ],
+          ) /*workoutShow(currentWorkout)*/),
           const SizedBox(width: 8),
           Expanded(child: workoutShow(currentWorkoutProvider))
         ]);
