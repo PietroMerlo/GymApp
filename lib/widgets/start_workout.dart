@@ -3,6 +3,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uitest/models/workout.dart';
+import 'package:uitest/widgets/workout_show.dart';
 
 class StartWorkout extends StatelessWidget {
   final NotifierProvider<Workout, List<Exercise>> startedWorkoutProvider;
@@ -38,27 +39,33 @@ class StartWorkout extends StatelessWidget {
           Expanded(
               child: Row(
             children: [
-              Expanded(flex: 2, child: SizedBox()),
+              const Expanded(flex: 2, child: SizedBox()),
               Expanded(flex: 4, child: workoutRecap(currentWorkoutProvider)),
-              Expanded(flex: 2, child: SizedBox()),
+              const Expanded(flex: 2, child: SizedBox()),
             ],
           ) /*workoutShow(currentWorkout)*/),
           const SizedBox(width: 8),
-          Expanded(child: workoutShow(currentWorkoutProvider))
+          Expanded(
+              child: Row(
+            children: [
+              const Expanded(flex: 2, child: SizedBox()),
+              Expanded(flex: 4, child: workoutShow(currentWorkoutProvider)),
+              const Expanded(flex: 2, child: SizedBox()),
+            ],
+          ))
         ]);
   }
 
-  //TODO implementa workoutShow
-  Widget workoutShow(NotifierProvider<Workout, List<Exercise>> currentWorkout) {
-    return const Text("working out...");
-  }
-
-  //TODO implemente workoutRecap
   Widget workoutRecap(
       NotifierProvider<Workout, List<Exercise>> currentWorkout) {
     return Consumer(builder: (context, ref, child) {
       return ref.read(currentWorkout.notifier).toRecap();
     });
+  }
+
+  ConsumerWidget workoutShow(
+      NotifierProvider<Workout, List<Exercise>> currentWorkout) {
+    return workout_Show(currentWorkout);
   }
 
   @override

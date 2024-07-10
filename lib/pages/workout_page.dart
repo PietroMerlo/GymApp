@@ -38,7 +38,7 @@ class WorkoutPage extends ConsumerWidget {
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => onPressedCreateExercise(context),
         icon: const Icon(Icons.add),
-        label: const Text('Aggiungi esercizio'),
+        label: const Text('Add exercise'),
       ),
       body: Consumer(
         builder: (context, ref, child) {
@@ -49,11 +49,11 @@ class WorkoutPage extends ConsumerWidget {
                   width: double.infinity,
                   child: Column(
                     children: [
-                      const Text('Nessun esercizio trovato'),
+                      const Text('No exercise found'),
                       kMediumVerticalSpacing,
                       ElevatedButton(
                         onPressed: () => onPressedCreateExercise(context),
-                        child: const Text('Crea esercizio'),
+                        child: const Text('Create Exercise'),
                       )
                     ],
                   ),
@@ -61,6 +61,9 @@ class WorkoutPage extends ConsumerWidget {
               : Column(
                   children: [
                     ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor: Color.fromARGB(255, 72, 36, 108)),
                       onPressed: () => onPressedStartWorkout(context),
                       child: const Text('Start Workout'),
                     ),

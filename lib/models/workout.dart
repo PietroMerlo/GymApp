@@ -116,10 +116,10 @@ class Workout extends Notifier<List<Exercise>> {
                               Text('Sets: ${exersise.sets}',
                                   style: const TextStyle(color: Colors.black)),
                               kMediumHorizontalSpacing,
-                              Text('Reps: ${exersise.sets}',
+                              Text('Reps: ${exersise.reps}',
                                   style: const TextStyle(color: Colors.black)),
                               kMediumHorizontalSpacing,
-                              Text('Weight: ${exersise.sets} kg',
+                              Text('Weight: ${exersise.weight} kg',
                                   style: const TextStyle(color: Colors.black)),
                               Expanded(child: Container()),
                             ],
@@ -132,6 +132,5 @@ class Workout extends Notifier<List<Exercise>> {
         ),
       ),
     );
-    ;
   }
 }
