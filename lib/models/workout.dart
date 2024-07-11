@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uitest/constant/spaces.dart';
+import 'package:uitest/models/event_rest.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uuid/uuid.dart';
 
