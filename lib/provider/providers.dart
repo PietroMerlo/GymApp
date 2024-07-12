@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:uitest/models/event_exercise.dart';
-import 'package:uitest/models/event_rest.dart';
+import 'package:uitest/models/event.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uitest/models/workout.dart';
 
@@ -32,5 +31,11 @@ final defaultWorkoutProvider =
   return event_Rest(time: 10);
 });*/
 
-final nextEventProvider =
-    StateProvider<event_Rest>((ref) => event_Rest(time: 10));
+final nextEventProvider = StateProvider<Event>((ref) => Event(
+      isExercise: false,
+      name: null,
+      reps: null,
+      weight: null,
+      notes: null,
+      time: null,
+    ));
