@@ -84,6 +84,14 @@ class Workout extends Notifier<List<Exercise>> {
   Widget toRecap() {
     return Container(
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
+            spreadRadius: 10,
+            blurRadius: 10,
+            offset: Offset(0, 0), // changes position of shadow
+          ),
+        ],
         border: Border.all(
           width: 5,
           color: Colors.white,
@@ -99,8 +107,11 @@ class Workout extends Notifier<List<Exercise>> {
               "Today's Workout",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
+            kMediumVerticalSpacing,
             Expanded(
               child: ListView(
+                shrinkWrap: true,
+                //physics: NeverScrollableScrollPhysics(),
                 children: state
                     .map((exersise) => ListTile(
                           title: Center(

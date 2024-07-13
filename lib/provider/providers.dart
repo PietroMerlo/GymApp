@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uitest/models/event.dart';
 import 'package:uitest/models/excercise.dart';
@@ -31,11 +33,10 @@ final defaultWorkoutProvider =
   return event_Rest(time: 10);
 });*/
 
-final nextEventProvider = StateProvider<Event>((ref) => Event(
-      isExercise: false,
-      name: null,
-      reps: null,
-      weight: null,
-      notes: null,
-      time: null,
-    ));
+final nextEventProvider = StateProvider<Queue<Event>>((ref) {
+  return Queue();
+});
+
+final toggleProvider = StateProvider<bool>((ref) {
+  return true;
+});

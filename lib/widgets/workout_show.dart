@@ -11,9 +11,29 @@ class workout_Show extends ConsumerWidget {
 
   const workout_Show(this.currentWorkout, {super.key});
 
-  //TODO implementa workoutShow
+  void init_Queue(
+      NotifierProvider<Workout, List<Exercise>> currentWorkout, WidgetRef ref) {
+    //TODO riempi la coda di eventi
+    ref.read(nextEventProvider).add(Event(
+        isExercise: true,
+        name: "start",
+        reps: 1,
+        weight: 1,
+        notes: "test note",
+        time: null));
+    ref.read(nextEventProvider).add(Event(
+        isExercise: false,
+        name: null,
+        reps: null,
+        weight: null,
+        notes: null,
+        time: 120));
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    init_Queue(currentWorkout, ref);
+    Event nextEvent = ref.watch(nextEventProvider).first;
     return Column(
       children: [
         kMediumVerticalSpacing,
@@ -22,14 +42,7 @@ class workout_Show extends ConsumerWidget {
               foregroundColor: Colors.white,
               backgroundColor: const Color.fromARGB(255, 12, 49, 109)),
           onPressed: () {
-            ref.read(nextEventProvider.notifier).state = Event(
-              isExercise: true,
-              name: 'panca',
-              reps: 6,
-              weight: 80,
-              notes: null,
-              time: null,
-            );
+            ref.read(nextEventProvider.notifier).state.removeFirst();
           },
           child: const Row(
             children: [
@@ -42,68 +55,76 @@ class workout_Show extends ConsumerWidget {
         ),
         kLargeVerticalSpacing,
         Expanded(
-          child: (ref.watch(nextEventProvider).isExercise)
-              ? Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 5,
-                      color: Colors.white,
+            child: Container(
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color:
+                          Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
+                      spreadRadius: 10,
+                      blurRadius: 10,
+                      offset: Offset(0, 0), // changes position of shadow
                     ),
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    color: const Color.fromARGB(255, 111, 187, 223),
+                  ],
+                  border: Border.all(
+                    width: 5,
+                    color: Colors.white,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(5.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(
-                          //NAME
-                          "${ref.watch(nextEventProvider).name}",
-                          style: const TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        Column(
-                          //REPS & WEIGHT
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  color: const Color.fromARGB(255, 111, 187, 223),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: (nextEvent.isExercise)
+                      ? Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Row(
+                            Text(
+                              //NAME
+                              "${nextEvent.name}",
+                              style: const TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            Column(
+                              //REPS & WEIGHT
                               children: [
-                                const Expanded(child: SizedBox()),
-                                Text(
-                                  "${ref.watch(nextEventProvider).reps}",
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
+                                Row(
+                                  children: [
+                                    const Expanded(child: SizedBox()),
+                                    Text(
+                                      "${nextEvent.reps}",
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const Text(" reps",
+                                        style: const TextStyle(fontSize: 20)),
+                                    const Expanded(child: SizedBox()),
+                                  ],
                                 ),
-                                const Text(" reps",
-                                    style: const TextStyle(fontSize: 20)),
-                                const Expanded(child: SizedBox()),
+                                Row(
+                                  children: [
+                                    const Expanded(child: SizedBox()),
+                                    const Text("with ",
+                                        style: const TextStyle(fontSize: 20)),
+                                    Text(
+                                      "${ref.watch(nextEventProvider).first.weight}",
+                                      style: const TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    const Text(" kg",
+                                        style: TextStyle(fontSize: 20)),
+                                    const Expanded(child: SizedBox()),
+                                  ],
+                                ),
                               ],
                             ),
-                            Row(
+                            Column(
+                              //NOTES
                               children: [
-                                const Expanded(child: SizedBox()),
-                                const Text("with ",
-                                    style: const TextStyle(fontSize: 20)),
-                                Text(
-                                  "${ref.watch(nextEventProvider).weight}",
-                                  style: const TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                const Text(" kg",
-                                    style: TextStyle(fontSize: 20)),
-                                const Expanded(child: SizedBox()),
-                              ],
-                            ),
-                          ],
-                        ),
-                        Column(
-                          //NOTES
-                          children: [
-                            Container(
-                                child:
-                                    (ref.watch(nextEventProvider).notes != null)
+                                Container(
+                                    child: (nextEvent.notes != null)
                                         ? const Text(
                                             "notes:",
                                             style: TextStyle(
@@ -111,22 +132,33 @@ class workout_Show extends ConsumerWidget {
                                                 fontWeight: FontWeight.bold),
                                           )
                                         : const SizedBox()),
-                            Container(
-                              child:
-                                  (ref.watch(nextEventProvider).notes != null)
+                                Container(
+                                  child: (nextEvent.notes != null)
                                       ? Text(
-                                          "${ref.watch(nextEventProvider).notes}",
+                                          "${nextEvent.notes}",
                                           style: const TextStyle(fontSize: 20),
                                         )
                                       : const SizedBox(),
+                                ),
+                              ],
                             ),
                           ],
+                        )
+                      : Column(
+                          children: [
+                            const Expanded(child: SizedBox()),
+                            Row(
+                              children: [
+                                const Expanded(child: SizedBox()),
+                                Text("rest: ${nextEvent.time}"),
+                                const Expanded(child: SizedBox()),
+                              ],
+                            ),
+                            const Expanded(child: SizedBox()),
+                          ],
                         ),
-                      ],
-                    ),
-                  ))
-              : const Text("rest"),
-        ),
+                ))),
+        kMediumVerticalSpacing,
       ],
     );
   }

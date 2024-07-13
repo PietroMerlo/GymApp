@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:uitest/constant/spaces.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uitest/models/workout.dart';
 import 'package:uitest/widgets/workout_show.dart';
@@ -27,7 +28,10 @@ class StartWorkout extends StatelessWidget {
 
   Widget buildSmall(
       NotifierProvider<Workout, List<Exercise>> currentWorkoutProvider) {
-    return workoutShow(currentWorkoutProvider);
+    return Padding(
+      padding: const EdgeInsets.all(15),
+      child: workoutShow(currentWorkoutProvider),
+    );
   }
 
   Widget buildLarge(
@@ -37,14 +41,23 @@ class StartWorkout extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         children: [
           Expanded(
-              child: Row(
-            children: [
-              const Expanded(flex: 2, child: SizedBox()),
-              Expanded(flex: 4, child: workoutRecap(currentWorkoutProvider)),
-              const Expanded(flex: 2, child: SizedBox()),
-            ],
-          ) /*workoutShow(currentWorkout)*/),
-          const SizedBox(width: 8),
+            child: Row(
+              children: [
+                const Expanded(flex: 2, child: SizedBox()),
+                Expanded(
+                  flex: 4,
+                  child: Column(
+                    children: [
+                      kMediumVerticalSpacing,
+                      Expanded(child: workoutRecap(currentWorkoutProvider)),
+                      kMediumVerticalSpacing,
+                    ],
+                  ),
+                ),
+                const Expanded(flex: 2, child: SizedBox()),
+              ],
+            ),
+          ),
           Expanded(
               child: Row(
             children: [
