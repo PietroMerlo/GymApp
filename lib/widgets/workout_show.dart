@@ -1,3 +1,5 @@
+import 'dart:collection';
+import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uitest/constant/spaces.dart';
@@ -5,6 +7,8 @@ import 'package:uitest/models/event.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uitest/models/workout.dart';
 import 'package:uitest/provider/providers.dart';
+
+const _uuid = Uuid();
 
 class workout_Show extends ConsumerWidget {
   final NotifierProvider<Workout, List<Exercise>> currentWorkout;
@@ -14,25 +18,85 @@ class workout_Show extends ConsumerWidget {
   void init_Queue(
       NotifierProvider<Workout, List<Exercise>> currentWorkout, WidgetRef ref) {
     //TODO riempi la coda di eventi
-    ref.read(nextEventProvider).add(Event(
+    ref.read(nextEventProvider).clear();
+    var Exercise_List = ref.watch(currentWorkout);
+    for (final element in Exercise_List) {
+      for (int i = 0; i < element.sets; i++) {
+        ref.read(nextEventProvider).add(Event(
+            id: _uuid.v4(),
+            isExercise: true,
+            name: element.name,
+            reps: element.reps,
+            weight: element.weight,
+            notes: element.notes,
+            time: null));
+
+        ref.read(nextEventProvider).add(Event(
+            id: _uuid.v4(),
+            isExercise: false,
+            name: null,
+            reps: null,
+            weight: null,
+            notes: null,
+            time: element.rest));
+      }
+    }
+
+    /*ref.read(nextEventProvider).add(Event(
+        id: _uuid.v4(),
         isExercise: true,
-        name: "start",
+        name: "first",
         reps: 1,
         weight: 1,
         notes: "test note",
         time: null));
     ref.read(nextEventProvider).add(Event(
+        id: _uuid.v4(),
         isExercise: false,
         name: null,
         reps: null,
         weight: null,
         notes: null,
-        time: 120));
+        time: 100));
+    ref.read(nextEventProvider).add(Event(
+        id: _uuid.v4(),
+        isExercise: true,
+        name: "second",
+        reps: 1,
+        weight: 1,
+        notes: "test note",
+        time: null));
+    ref.read(nextEventProvider).add(Event(
+        id: _uuid.v4(),
+        isExercise: false,
+        name: null,
+        reps: null,
+        weight: null,
+        notes: null,
+        time: 200));*/
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    init_Queue(currentWorkout, ref);
+    (ref.watch(nextEventProvider).isEmpty)
+        //TODO se la lista è vuota il workout è finito
+        ? {
+            /*WORKOUT FINITO*/
+
+            Future(() {
+              ref.read(firstProvider.notifier).state = true;
+            }),
+            Navigator.of(context).pop()
+          }
+        : (ref.watch(firstProvider))
+            ? {
+                init_Queue(currentWorkout, ref),
+                Future(() {
+                  ref.read(firstProvider.notifier).state = false;
+                })
+              }
+            : {};
+
     Event nextEvent = ref.watch(nextEventProvider).first;
     return Column(
       children: [
@@ -42,7 +106,9 @@ class workout_Show extends ConsumerWidget {
               foregroundColor: Colors.white,
               backgroundColor: const Color.fromARGB(255, 12, 49, 109)),
           onPressed: () {
-            ref.read(nextEventProvider.notifier).state.removeFirst();
+            var dataList = ref.read(nextEventProvider);
+            dataList.removeWhere((item) => item.id == nextEvent.id);
+            ref.read(nextEventProvider.notifier).state = [...dataList];
           },
           child: const Row(
             children: [

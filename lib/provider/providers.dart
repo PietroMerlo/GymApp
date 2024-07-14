@@ -33,10 +33,19 @@ final defaultWorkoutProvider =
   return event_Rest(time: 10);
 });*/
 
-final nextEventProvider = StateProvider<Queue<Event>>((ref) {
-  return Queue();
+final nextEventProvider = StateProvider<List<Event>>((ref) {
+  return [
+    Event(
+        id: "default",
+        isExercise: false,
+        name: null,
+        reps: null,
+        weight: null,
+        notes: null,
+        time: null)
+  ];
 });
 
-final toggleProvider = StateProvider<bool>((ref) {
+final firstProvider = StateProvider<bool>((ref) {
   return true;
 });

@@ -1,4 +1,5 @@
 class Event {
+  final String id;
   final bool isExercise;
   final String? name;
   final int? reps;
@@ -7,6 +8,7 @@ class Event {
   final int? time;
 
   Event({
+    required this.id,
     required this.isExercise,
     required this.name,
     required this.reps,
