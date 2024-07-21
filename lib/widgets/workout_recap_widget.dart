@@ -1,12 +1,8 @@
-import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uitest/constant/spaces.dart';
-import 'package:uitest/models/event.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uitest/models/workout.dart';
-import 'package:uitest/provider/providers.dart';
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 class workout_Recap extends ConsumerWidget {
   final NotifierProvider<Workout, List<Exercise>> currentWorkout;
@@ -19,17 +15,17 @@ class workout_Recap extends ConsumerWidget {
         boxShadow: [
           BoxShadow(
             color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
-            spreadRadius: 10,
-            blurRadius: 10,
+            spreadRadius: 5,
+            blurRadius: 5,
             offset: Offset(0, 0), // changes position of shadow
           ),
         ],
         border: Border.all(
-          width: 5,
+          width: 2,
           color: Colors.white,
         ),
         borderRadius: const BorderRadius.all(Radius.circular(20)),
-        color: const Color.fromARGB(255, 206, 148, 213),
+        color: Color.fromARGB(162, 206, 148, 213),
       ),
       child: Padding(
         padding: const EdgeInsets.all(5.0),

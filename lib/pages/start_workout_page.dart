@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uitest/constant/spaces.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uitest/models/workout.dart';
-import 'package:uitest/provider/providers.dart';
 import 'package:uitest/widgets/workout_recap_widget.dart';
 import 'package:uitest/widgets/workout_show_widget.dart';
 
@@ -67,8 +66,8 @@ class StartWorkout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-    final isLarge = (size.width >= 992);
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
 
     return Scaffold(
         appBar: AppBar(
@@ -78,7 +77,7 @@ class StartWorkout extends StatelessWidget {
             })),
         body: Padding(
             padding: const EdgeInsets.all(10),
-            child: (isLarge)
+            child: (isLandscape)
                 ? buildLarge(startedWorkoutProvider)
                 : buildSmall(startedWorkoutProvider)));
   }

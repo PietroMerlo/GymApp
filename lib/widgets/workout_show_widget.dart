@@ -112,8 +112,10 @@ class workout_Show extends ConsumerWidget {
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
-                        backgroundColor:
-                            const Color.fromARGB(255, 12, 49, 109)),
+                        backgroundColor: (nextEvent.isExercise)
+                            ? Color.fromARGB(200, 111, 188, 223)
+                            : Color.fromARGB(198, 111, 223, 171)),
+                    //const Color.fromARGB(255, 12, 49, 109)),
                     onPressed: () {
                       var dataList = ref.read(nextEventProvider);
                       dataList.removeWhere((item) => item.id == nextEvent.id);
@@ -138,21 +140,21 @@ class workout_Show extends ConsumerWidget {
                               BoxShadow(
                                 color: Color.fromARGB(255, 255, 255, 255)
                                     .withOpacity(0.5),
-                                spreadRadius: 10,
-                                blurRadius: 10,
+                                spreadRadius: 5,
+                                blurRadius: 5,
                                 offset:
                                     Offset(0, 0), // changes position of shadow
                               ),
                             ],
                             border: Border.all(
-                              width: 5,
+                              width: 2,
                               color: Colors.white,
                             ),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(20)),
                             color: (nextEvent.isExercise)
-                                ? const Color.fromARGB(255, 111, 187, 223)
-                                : Color.fromARGB(255, 111, 223, 171),
+                                ? Color.fromARGB(200, 111, 188, 223)
+                                : Color.fromARGB(198, 111, 223, 171),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
@@ -256,13 +258,14 @@ class workout_Show extends ConsumerWidget {
                                                       .size
                                                       .height /
                                                   2,
-                                              ringColor: Colors.grey[300]!,
+                                              ringColor: Color.fromARGB(
+                                                  255, 111, 223, 171),
                                               ringGradient: null,
-                                              fillColor:
-                                                  Colors.purpleAccent[100]!,
+                                              fillColor: Color.fromARGB(
+                                                  255, 8, 200, 24),
                                               fillGradient: null,
-                                              backgroundColor:
-                                                  Colors.purple[500],
+                                              backgroundColor: Color.fromARGB(
+                                                  255, 8, 100, 24),
                                               backgroundGradient: null,
                                               strokeWidth: 20.0,
                                               strokeCap: StrokeCap.round,
@@ -275,16 +278,6 @@ class workout_Show extends ConsumerWidget {
                                               isReverseAnimation: false,
                                               isTimerTextShown: true,
                                               autoStart: true,
-                                              onStart: () {
-                                                debugPrint('Countdown Started');
-                                              },
-                                              onComplete: () {
-                                                debugPrint('Countdown Ended');
-                                              },
-                                              onChange: (String timeStamp) {
-                                                debugPrint(
-                                                    'Countdown Changed $timeStamp');
-                                              },
                                               timeFormatterFunction:
                                                   (defaultFormatterFunction,
                                                       duration) {
@@ -315,7 +308,7 @@ class workout_Show extends ConsumerWidget {
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor:
-                            const Color.fromARGB(255, 12, 49, 109)),
+                            const Color.fromARGB(215, 223, 134, 111)),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -336,19 +329,19 @@ class workout_Show extends ConsumerWidget {
                               BoxShadow(
                                 color: Color.fromARGB(255, 255, 255, 255)
                                     .withOpacity(0.5),
-                                spreadRadius: 10,
-                                blurRadius: 10,
+                                spreadRadius: 5,
+                                blurRadius: 5,
                                 offset:
                                     Offset(0, 0), // changes position of shadow
                               ),
                             ],
                             border: Border.all(
-                              width: 5,
+                              width: 2,
                               color: Colors.white,
                             ),
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(20)),
-                            color: Color.fromARGB(255, 223, 111, 111),
+                            color: Color.fromARGB(215, 223, 134, 111),
                           ),
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),

@@ -7,24 +7,12 @@ import 'package:uitest/pages/bottom_bar_home_page.dart';
 class Startup extends StatelessWidget {
   const Startup({super.key});
 
-  /*Future<void> initialize(BuildContext context, Workout workout) async {
-    await workout.initialize();
-  }*/
-
   Future<void> initializeAll(List<Workout> week, WidgetRef ref) async {
     for (final workout in week) {
       await workout.initialize();
     }
   }
 
-  /*Future<void> initAndCheckMount(BuildContext context, Workout workout) async {
-    await workout.initialize();
-    if (context.mounted) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const BottomBarHomePage()),
-      );
-    }
-  }*/
   Future<void> checkMount(
     BuildContext context,
   ) async {
@@ -53,14 +41,6 @@ class Startup extends StatelessWidget {
       WidgetsBinding.instance.addPostFrameCallback((timestamp) {
         checkMount(context);
       });
-
-      /*initialize(context, ref.read(mondayWorkoutProvider.notifier));
-      initialize(context, ref.read(tuesdayWorkoutProvider.notifier));
-      initialize(context, ref.read(wednesdayWorkoutProvider.notifier));
-      initialize(context, ref.read(thursdayWorkoutProvider.notifier));
-      initialize(context, ref.read(fridayWorkoutProvider.notifier));
-      initialize(context, ref.read(saturdayWorkoutProvider.notifier));
-      */
 
       return Container(
         color: Colors.white,

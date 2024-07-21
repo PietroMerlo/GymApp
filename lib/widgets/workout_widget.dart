@@ -34,7 +34,9 @@ class WorkoutPage extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text("$day workout"),
+          title: Container(
+            child: Expanded(child: Text("$day workout")),
+          ),
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => onPressedCreateExercise(context),
@@ -72,17 +74,27 @@ class WorkoutPage extends ConsumerWidget {
                   ),
                   Expanded(
                     child: ListView(
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
                       children: ref
                           .watch(selectedDayWorkoutProvider)
                           .map((exersise) => ListTile(
-                                title: Text(exersise.name),
+                                leading: Icon(Icons.arrow_right),
+                                title: Text(
+                                  exersise.name,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ),
                                 subtitle: Row(
                                   children: [
-                                    Text('Sets: ${exersise.sets}'),
+                                    Text('Sets: ${exersise.sets}',
+                                        style: TextStyle(fontSize: 17)),
                                     kMediumHorizontalSpacing,
-                                    Text('Reps: ${exersise.reps}'),
+                                    Text('Reps: ${exersise.reps}',
+                                        style: TextStyle(fontSize: 17)),
                                     kMediumHorizontalSpacing,
-                                    Text('Weight: ${exersise.weight} kg'),
+                                    Text('Weight: ${exersise.weight} kg',
+                                        style: TextStyle(fontSize: 17)),
                                   ],
                                 ),
                                 trailing: IconButton(
