@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uitest/constant/spaces.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uitest/models/workout.dart';
+import 'package:uitest/provider/providers.dart';
+import 'package:uitest/widgets/workout_recap.dart';
 import 'package:uitest/widgets/workout_show.dart';
 
 class StartWorkout extends StatelessWidget {
@@ -55,9 +57,7 @@ class StartWorkout extends StatelessWidget {
 
   Widget workoutRecap(
       NotifierProvider<Workout, List<Exercise>> currentWorkout) {
-    return Consumer(builder: (context, ref, child) {
-      return ref.read(currentWorkout.notifier).toRecap();
-    });
+    return workout_Recap(currentWorkout);
   }
 
   ConsumerWidget workoutShow(

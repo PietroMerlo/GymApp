@@ -44,6 +44,9 @@ final nextEventProvider = StateProvider<List<Event>>((ref) {
   ];
 });
 
-final firstProvider = StateProvider<bool>((ref) {
+final firstTimeProvider = StateProvider<bool>((ref) {
   return true;
+});
+final endWorkoutProvider = StateProvider<bool>((ref) {
+  return false;
 });

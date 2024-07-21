@@ -5,6 +5,7 @@ import 'package:uitest/models/excercise.dart';
 import 'package:uitest/models/workout.dart';
 import 'package:uitest/pages/create_exercise.dart';
 import 'package:uitest/pages/start_workout.dart';
+import 'package:uitest/provider/providers.dart';
 
 class WorkoutPage extends ConsumerWidget {
   final NotifierProvider<Workout, List<Exercise>> selectedDayWorkoutProvider;
@@ -60,7 +61,13 @@ class WorkoutPage extends ConsumerWidget {
                     style: ElevatedButton.styleFrom(
                         foregroundColor: Colors.white,
                         backgroundColor: Color.fromARGB(255, 72, 36, 108)),
-                    onPressed: () => onPressedStartWorkout(context),
+                    onPressed: () => {
+                      Future(() {
+                        ref.read(endWorkoutProvider.notifier).state = false;
+                        ref.read(firstTimeProvider.notifier).state = true;
+                      }),
+                      onPressedStartWorkout(context)
+                    },
                     child: const Text('Start Workout'),
                   ),
                   Expanded(
