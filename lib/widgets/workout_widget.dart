@@ -35,7 +35,7 @@ class WorkoutPage extends ConsumerWidget {
     return Scaffold(
         appBar: AppBar(
           title: Container(
-            child: Expanded(child: Text("$day workout")),
+            child: Text("$day workout"),
           ),
         ),
         floatingActionButton: FloatingActionButton.extended(

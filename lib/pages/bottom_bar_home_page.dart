@@ -47,9 +47,10 @@ class _BottomBarHomePageState extends State<BottomBarHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text(
-        "GymApp 2.0",
-      )),
+            "GymApp 2.0",
+          )),
       bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.amber[800],
           showUnselectedLabels: true,

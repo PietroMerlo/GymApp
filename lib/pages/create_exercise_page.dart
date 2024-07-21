@@ -30,6 +30,7 @@ class CreateExercise extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Crea esercizio'),
       ),
       body: Consumer(builder: (context, ref, child) {

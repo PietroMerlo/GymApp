@@ -48,19 +48,19 @@ class workout_Recap extends ConsumerWidget {
                             exersise.name,
                             style: const TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 122, 78, 130)),
+                                color: Color.fromARGB(255, 160, 34, 183)),
                           )),
                           subtitle: Row(
                             children: [
                               Expanded(child: Container()),
                               Text('Sets: ${exersise.sets}',
-                                  style: const TextStyle(color: Colors.black)),
+                                  style: const TextStyle(color: Colors.white)),
                               kMediumHorizontalSpacing,
                               Text('Reps: ${exersise.reps}',
-                                  style: const TextStyle(color: Colors.black)),
+                                  style: const TextStyle(color: Colors.white)),
                               kMediumHorizontalSpacing,
                               Text('Weight: ${exersise.weight} kg',
-                                  style: const TextStyle(color: Colors.black)),
+                                  style: const TextStyle(color: Colors.white)),
                               Expanded(child: Container()),
                             ],
                           ),
