@@ -11,7 +11,7 @@ class StartWorkout extends StatelessWidget {
 
   StartWorkout({super.key, required this.startedWorkoutProvider});
 
-  Widget buildSmall(
+  Widget buildPortrait(
       NotifierProvider<Workout, List<Exercise>> currentWorkoutProvider) {
     return Padding(
       padding: const EdgeInsets.all(15),
@@ -19,7 +19,7 @@ class StartWorkout extends StatelessWidget {
     );
   }
 
-  Widget buildLarge(
+  Widget buildLandscape(
       NotifierProvider<Workout, List<Exercise>> currentWorkoutProvider) {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -78,7 +78,7 @@ class StartWorkout extends StatelessWidget {
         body: Padding(
             padding: const EdgeInsets.all(10),
             child: (isLandscape)
-                ? buildLarge(startedWorkoutProvider)
-                : buildSmall(startedWorkoutProvider)));
+                ? buildLandscape(startedWorkoutProvider)
+                : buildPortrait(startedWorkoutProvider)));
   }
 }
