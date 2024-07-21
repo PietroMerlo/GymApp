@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uitest/constant/spaces.dart';
 import 'package:uitest/models/excercise.dart';
@@ -8,23 +7,8 @@ import 'package:uitest/widgets/workout_show.dart';
 
 class StartWorkout extends StatelessWidget {
   final NotifierProvider<Workout, List<Exercise>> startedWorkoutProvider;
-  final _formKey = GlobalKey<FormBuilderState>();
 
   StartWorkout({super.key, required this.startedWorkoutProvider});
-
-  void onSetsAddRemovePressed(int incrementValue) {
-    _formKey.currentState!.fields['sets']!.didChange(
-        (int.parse(_formKey.currentState!.fields['sets']!.value) +
-                incrementValue)
-            .toString());
-  }
-
-  void onRepsAddRemovePressed(int incrementValue) {
-    _formKey.currentState!.fields['reps']!.didChange(
-        (int.parse(_formKey.currentState!.fields['reps']!.value) +
-                incrementValue)
-            .toString());
-  }
 
   Widget buildSmall(
       NotifierProvider<Workout, List<Exercise>> currentWorkoutProvider) {

@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,7 +16,6 @@ class workout_Show extends ConsumerWidget {
 
   void init_Queue(
       NotifierProvider<Workout, List<Exercise>> currentWorkout, WidgetRef ref) {
-    //TODO riempi la coda di eventi
     ref.read(nextEventProvider).clear();
     var Exercise_List = ref.watch(currentWorkout);
     for (final element in Exercise_List) {
@@ -86,6 +84,8 @@ class workout_Show extends ConsumerWidget {
             Future(() {
               ref.read(firstProvider.notifier).state = true;
             }),
+            //TODO PROBLEMA
+
             Navigator.of(context).pop()
           }
         : (ref.watch(firstProvider))

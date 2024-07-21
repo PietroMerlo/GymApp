@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:uitest/pages/workout_page.dart';
+
+import 'package:uitest/widgets/workout_widget.dart';
 import 'package:uitest/provider/providers.dart';
 
 class BottomBarHomePage extends StatefulWidget {
@@ -11,9 +12,18 @@ class BottomBarHomePage extends StatefulWidget {
 
 class _BottomBarHomePageState extends State<BottomBarHomePage> {
   int pageIndex = 0;
-
+  var week = [
+    mondayWorkoutProvider,
+    tuesdayWorkoutProvider,
+    wednesdayWorkoutProvider,
+    thursdayWorkoutProvider,
+    fridayWorkoutProvider,
+    saturdayWorkoutProvider,
+    sundayWorkoutProvider,
+  ];
   Widget buildPage() {
-    switch (pageIndex) {
+    return WorkoutPage(week[pageIndex]);
+    /*switch (pageIndex) {
       case 0:
         return WorkoutPage(mondayWorkoutProvider);
       case 1:
@@ -30,7 +40,7 @@ class _BottomBarHomePageState extends State<BottomBarHomePage> {
         return WorkoutPage(sundayWorkoutProvider);
       default:
         return WorkoutPage(defaultWorkoutProvider);
-    }
+    }*/
   }
 
   @override
