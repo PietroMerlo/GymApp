@@ -34,7 +34,8 @@ class WorkoutPage extends ConsumerWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Container(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          title: Center(
             child: Text("$day workout"),
           ),
         ),

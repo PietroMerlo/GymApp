@@ -32,7 +32,7 @@ class Startup extends StatelessWidget {
         await http.get(Uri.parse("https://api.quotable.io/quotes/random"));
 
     if (response.statusCode != 200) {
-      throw Exception("Something went wrong");
+      throw Exception("Something went wrong (${response.statusCode})");
     }
 
     List<dynamic> rawJsonList = jsonDecode(response.body);
@@ -82,7 +82,7 @@ class Startup extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
-                          Text("-${snapshot.data!.author}"),
+                          Text("- ${snapshot.data!.author}"),
                           kLargeVerticalSpacing
                         ],
                       );
