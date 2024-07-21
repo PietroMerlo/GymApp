@@ -4,8 +4,8 @@ import 'package:uitest/constant/spaces.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uitest/models/workout.dart';
 import 'package:uitest/provider/providers.dart';
-import 'package:uitest/widgets/workout_recap.dart';
-import 'package:uitest/widgets/workout_show.dart';
+import 'package:uitest/widgets/workout_recap_widget.dart';
+import 'package:uitest/widgets/workout_show_widget.dart';
 
 class StartWorkout extends StatelessWidget {
   final NotifierProvider<Workout, List<Exercise>> startedWorkoutProvider;

@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uitest/constant/spaces.dart';
 import 'package:uitest/models/excercise.dart';
 import 'package:uitest/models/workout.dart';
-import 'package:uitest/pages/create_exercise.dart';
-import 'package:uitest/pages/start_workout.dart';
+import 'package:uitest/pages/create_exercise_page.dart';
+import 'package:uitest/pages/start_workout_page.dart';
 import 'package:uitest/provider/providers.dart';
 
 class WorkoutPage extends ConsumerWidget {
