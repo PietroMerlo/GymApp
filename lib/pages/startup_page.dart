@@ -75,16 +75,24 @@ class Startup extends StatelessWidget {
                   future: q,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return Column(
-                        children: [
-                          Text(
-                            "\"${snapshot.data!.content}\"",
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
-                          ),
-                          Text("- ${snapshot.data!.author}"),
-                          kLargeVerticalSpacing
-                        ],
+                      return Center(
+                        child: Column(
+                          children: [
+                            Wrap(children: [
+                              Text(
+                                "\"${snapshot.data!.content}\"",
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.center,
+                              ),
+                            ]),
+                            Text(
+                              "- ${snapshot.data!.author}",
+                              textAlign: TextAlign.center,
+                            ),
+                            kLargeVerticalSpacing
+                          ],
+                        ),
                       );
                     } else if (snapshot.hasError) {
                       return Text('${snapshot.error}');
