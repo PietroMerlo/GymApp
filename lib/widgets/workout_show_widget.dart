@@ -43,6 +43,8 @@ class workout_Show extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     Event nextEvent = Event(
         id: "default",
         isExercise: false,
@@ -71,14 +73,6 @@ class workout_Show extends ConsumerWidget {
                 : {nextEvent = ref.watch(nextEventProvider).first}
           };
 
-/*
-
-GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-
-*/
     return Scaffold(
         body: (!ref.watch(endWorkoutProvider))
             ? GestureDetector(
@@ -148,7 +142,9 @@ GestureDetector(
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
-                                        kHugeVerticalSpacing,
+                                        (isLandscape)
+                                            ? kMediumVerticalSpacing
+                                            : kHumongousVerticalSpacing,
                                         Column(
                                           //REPS & WEIGHT
                                           children: [
@@ -193,7 +189,9 @@ GestureDetector(
                                             ),
                                           ],
                                         ),
-                                        kHugeVerticalSpacing,
+                                        (isLandscape)
+                                            ? kMediumVerticalSpacing
+                                            : kHumongousVerticalSpacing,
                                         Column(
                                           //NOTES
                                           children: [

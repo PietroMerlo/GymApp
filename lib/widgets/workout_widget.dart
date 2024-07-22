@@ -116,9 +116,9 @@ class WorkoutPage extends ConsumerWidget {
                                       context: context,
                                       builder: (context) => SimpleDialog(
                                         shadowColor: const Color.fromARGB(
-                                            255, 100, 66, 114),
+                                            255, 72, 36, 108),
                                         backgroundColor: const Color.fromARGB(
-                                            255, 100, 66, 114),
+                                            255, 72, 36, 108),
                                         title: const Center(
                                             child: Text('Are you sure?')),
                                         contentPadding:
@@ -158,10 +158,10 @@ class WorkoutPage extends ConsumerWidget {
 
                                                   Navigator.of(context).pop();
                                                 },
-                                                style: const ButtonStyle(
+                                                style: ButtonStyle(
                                                   backgroundColor:
                                                       WidgetStatePropertyAll(
-                                                    Colors.red,
+                                                    Colors.amber[800],
                                                   ),
                                                 ),
                                                 child: const Text(
@@ -178,7 +178,7 @@ class WorkoutPage extends ConsumerWidget {
                                     );
                                   },
                                   icon: const Icon(Icons.delete),
-                                  color: Colors.red,
+                                  color: Colors.amber[800],
                                 ),
                               ))
                           .toList(),
