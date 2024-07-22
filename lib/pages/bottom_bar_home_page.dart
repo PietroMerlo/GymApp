@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:uitest/widgets/workout_widget.dart';
 import 'package:uitest/provider/providers.dart';
@@ -45,12 +46,18 @@ class _BottomBarHomePageState extends State<BottomBarHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text(
-            "GymApp 2.0",
-          )),
+          title: Consumer(builder: (ctx, ref, _) {
+            return Center(
+              child: Text(
+                "${ref.watch(week[pageIndex].notifier).day} workout",
+              ),
+            );
+          })),
       bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.amber[800],
           showUnselectedLabels: true,
@@ -63,35 +70,35 @@ class _BottomBarHomePageState extends State<BottomBarHomePage> {
               pageIndex = index;
             });
           },
-          items: const [
+          items: [
             BottomNavigationBarItem(
                 icon: Icon(Icons.arrow_drop_down),
                 activeIcon: Icon(Icons.arrow_drop_up),
-                label: 'Monday'),
+                label: (isLandscape) ? 'Monday' : 'Mon'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.arrow_drop_down),
                 activeIcon: Icon(Icons.arrow_drop_up),
-                label: "Tuesday"),
+                label: (isLandscape) ? 'Tuesday' : 'Tue'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.arrow_drop_down),
                 activeIcon: Icon(Icons.arrow_drop_up),
-                label: "Wednesday"),
+                label: (isLandscape) ? "Wednesday" : 'Wed'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.arrow_drop_down),
                 activeIcon: Icon(Icons.arrow_drop_up),
-                label: "Thursday"),
+                label: (isLandscape) ? "Thursday" : 'Thu'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.arrow_drop_down),
                 activeIcon: Icon(Icons.arrow_drop_up),
-                label: "Friday"),
+                label: (isLandscape) ? "Friday" : 'Fri'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.arrow_drop_down),
                 activeIcon: Icon(Icons.arrow_drop_up),
-                label: "Saturday"),
+                label: (isLandscape) ? "Saturday" : 'Sat'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.arrow_drop_down),
                 activeIcon: Icon(Icons.arrow_drop_up),
-                label: "Sunday"),
+                label: (isLandscape) ? "Sunday" : 'Sun'),
           ]),
       body: Padding(padding: const EdgeInsets.all(8), child: buildPage()),
     );

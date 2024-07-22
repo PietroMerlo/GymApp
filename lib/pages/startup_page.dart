@@ -32,7 +32,7 @@ class Startup extends StatelessWidget {
         await http.get(Uri.parse("https://api.quotable.io/quotes/random"));
 
     if (response.statusCode != 200) {
-      throw Exception("Something went wrong (${response.statusCode})");
+      throw Exception("Also try Terraria (error ${response.statusCode})");
     }
 
     List<dynamic> rawJsonList = jsonDecode(response.body);

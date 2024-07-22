@@ -17,7 +17,6 @@ class workout_Recap extends ConsumerWidget {
             color: Color.fromARGB(255, 255, 255, 255).withOpacity(0.5),
             spreadRadius: 5,
             blurRadius: 5,
-            offset: Offset(0, 0), // changes position of shadow
           ),
         ],
         border: Border.all(
@@ -31,6 +30,7 @@ class workout_Recap extends ConsumerWidget {
         padding: const EdgeInsets.all(5.0),
         child: Column(
           children: [
+            kMediumVerticalSpacing,
             const Text(
               "Today's Workout",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -39,7 +39,6 @@ class workout_Recap extends ConsumerWidget {
             Expanded(
               child: ListView(
                 shrinkWrap: true,
-                //physics: NeverScrollableScrollPhysics(),
                 children: ref
                     .watch(currentWorkout)
                     .map((exersise) => ListTile(

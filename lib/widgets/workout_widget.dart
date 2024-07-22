@@ -30,15 +30,10 @@ class WorkoutPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String day = ref.watch(selectedDayWorkoutProvider.notifier).day;
+    final isLandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
 
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.surface,
-          title: Center(
-            child: Text("$day workout"),
-          ),
-        ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () => onPressedCreateExercise(context),
           icon: const Icon(Icons.add),
@@ -86,18 +81,35 @@ class WorkoutPage extends ConsumerWidget {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
                                 ),
-                                subtitle: Row(
-                                  children: [
-                                    Text('Sets: ${exersise.sets}',
-                                        style: TextStyle(fontSize: 17)),
-                                    kMediumHorizontalSpacing,
-                                    Text('Reps: ${exersise.reps}',
-                                        style: TextStyle(fontSize: 17)),
-                                    kMediumHorizontalSpacing,
-                                    Text('Weight: ${exersise.weight} kg',
-                                        style: TextStyle(fontSize: 17)),
-                                  ],
-                                ),
+                                subtitle: (isLandscape)
+                                    ? Row(
+                                        children: [
+                                          Text('Sets: ${exersise.sets}',
+                                              style: TextStyle(fontSize: 17)),
+                                          kMediumHorizontalSpacing,
+                                          Text('Reps: ${exersise.reps}',
+                                              style: TextStyle(fontSize: 17)),
+                                          kMediumHorizontalSpacing,
+                                          Text('Weight: ${exersise.weight} kg',
+                                              style: TextStyle(fontSize: 17)),
+                                        ],
+                                      )
+                                    : Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text('Sets: ${exersise.sets}',
+                                              style: TextStyle(fontSize: 17)),
+                                          kMediumHorizontalSpacing,
+                                          Text('Reps: ${exersise.reps}',
+                                              style: TextStyle(fontSize: 17)),
+                                          kMediumHorizontalSpacing,
+                                          Text('Weight: ${exersise.weight} kg',
+                                              style: TextStyle(fontSize: 17)),
+                                        ],
+                                      ),
                                 trailing: IconButton(
                                   onPressed: () {
                                     showDialog(

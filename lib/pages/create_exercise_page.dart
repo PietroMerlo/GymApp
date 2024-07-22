@@ -95,8 +95,7 @@ class CreateExercise extends StatelessWidget {
                         child: FormBuilderTextField(
                           name: 'reps',
                           initialValue: '0',
-                          decoration:
-                              const InputDecoration(labelText: 'Ripetizioni'),
+                          decoration: const InputDecoration(labelText: 'Reps'),
                           keyboardType: TextInputType.number,
                           validator: FormBuilderValidators.compose([
                             FormBuilderValidators.required(),
@@ -115,7 +114,7 @@ class CreateExercise extends StatelessWidget {
                   FormBuilderTextField(
                     name: 'weight',
                     decoration: const InputDecoration(
-                      labelText: 'Peso',
+                      labelText: 'Weight',
                       hintText: 'kg',
                     ),
                     keyboardType: TextInputType.number,
@@ -128,8 +127,8 @@ class CreateExercise extends StatelessWidget {
                   FormBuilderTextField(
                     name: 'rest',
                     decoration: const InputDecoration(
-                      labelText: 'Riposo',
-                      hintText: 'Secondi',
+                      labelText: 'Rest',
+                      hintText: 'Seconds',
                     ),
                     keyboardType: TextInputType.number,
                     validator: FormBuilderValidators.compose([
@@ -161,6 +160,8 @@ class CreateExercise extends StatelessWidget {
                               rest: int.parse(_formKey
                                   .currentState!.value['rest']
                                   .toString()),
+                              notes: _formKey.currentState!.value['notes']
+                                  .toString(),
                             );
 
                         Navigator.of(context).pop();

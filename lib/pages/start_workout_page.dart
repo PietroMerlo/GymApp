@@ -28,9 +28,9 @@ class StartWorkout extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                const Expanded(flex: 2, child: SizedBox()),
+                const Expanded(flex: 1, child: SizedBox()),
                 Expanded(
-                  flex: 4,
+                  flex: 6,
                   child: Column(
                     children: [
                       kMediumVerticalSpacing,
@@ -39,16 +39,16 @@ class StartWorkout extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Expanded(flex: 2, child: SizedBox()),
+                const Expanded(flex: 1, child: SizedBox()),
               ],
             ),
           ),
           Expanded(
               child: Row(
             children: [
-              const Expanded(flex: 2, child: SizedBox()),
-              Expanded(flex: 4, child: workoutShow(currentWorkoutProvider)),
-              const Expanded(flex: 2, child: SizedBox()),
+              const Expanded(flex: 1, child: SizedBox()),
+              Expanded(flex: 6, child: workoutShow(currentWorkoutProvider)),
+              const Expanded(flex: 1, child: SizedBox()),
             ],
           ))
         ]);
@@ -73,7 +73,8 @@ class StartWorkout extends StatelessWidget {
         appBar: AppBar(
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             title: Consumer(builder: (context, ref, child) {
-              return Text(ref.watch(startedWorkoutProvider.notifier).day);
+              return Text(
+                  "${ref.watch(startedWorkoutProvider.notifier).day} workout");
             })),
         body: Padding(
             padding: const EdgeInsets.all(10),
