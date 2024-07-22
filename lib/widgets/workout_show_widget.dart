@@ -197,26 +197,30 @@ class workout_Show extends ConsumerWidget {
                                           children: [
                                             Center(
                                               child: Container(
-                                                  child:
-                                                      (nextEvent.notes != null)
-                                                          ? const Text(
-                                                              "notes:",
-                                                              style: TextStyle(
-                                                                  fontSize: 20,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                            )
-                                                          : const SizedBox()),
+                                                child:
+                                                    (nextEvent.notes == "null")
+                                                        ? const SizedBox()
+                                                        : const Text(
+                                                            "notes:",
+                                                            style: TextStyle(
+                                                                fontSize: 20,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
+                                                          ),
+                                              ),
                                             ),
-                                            Container(
-                                              child: (nextEvent.notes != null)
-                                                  ? Text(
-                                                      "${nextEvent.notes}",
-                                                      style: const TextStyle(
-                                                          fontSize: 20),
-                                                    )
-                                                  : const SizedBox(),
+                                            Center(
+                                              child: Container(
+                                                child: (nextEvent.notes ==
+                                                        "null")
+                                                    ? const SizedBox()
+                                                    : Text(
+                                                        "${nextEvent.notes}",
+                                                        style: const TextStyle(
+                                                            fontSize: 20),
+                                                      ),
+                                              ),
                                             ),
                                           ],
                                         ),
