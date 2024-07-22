@@ -27,10 +27,6 @@ final sundayWorkoutProvider =
 final defaultWorkoutProvider =
     NotifierProvider<Workout, List<Exercise>>(() => Workout(day: "Default"));
 
-/*final nextEventProvider = StateNotifierProvider<event_Rest>((ref) {
-  return event_Rest(time: 10);
-});*/
-
 final nextEventProvider = StateProvider<List<Event>>((ref) {
   return [
     Event(
