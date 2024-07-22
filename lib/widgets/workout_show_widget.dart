@@ -197,23 +197,21 @@ class workout_Show extends ConsumerWidget {
                                           children: [
                                             Center(
                                               child: Container(
-                                                child:
-                                                    (nextEvent.notes == "null")
-                                                        ? const SizedBox()
-                                                        : const Text(
-                                                            "notes:",
-                                                            style: TextStyle(
-                                                                fontSize: 20,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                          ),
+                                                child: (nextEvent.notes == null)
+                                                    ? const SizedBox()
+                                                    : const Text(
+                                                        "notes:",
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
                                               ),
                                             ),
                                             Center(
                                               child: Container(
-                                                child: (nextEvent.notes ==
-                                                        "null")
+                                                child: (nextEvent.notes == null)
                                                     ? const SizedBox()
                                                     : Text(
                                                         "${nextEvent.notes}",
@@ -272,17 +270,6 @@ class workout_Show extends ConsumerWidget {
                                                 isReverseAnimation: false,
                                                 isTimerTextShown: true,
                                                 autoStart: true,
-                                                timeFormatterFunction:
-                                                    (defaultFormatterFunction,
-                                                        duration) {
-                                                  if (duration.inSeconds == 0) {
-                                                    return "Start";
-                                                  } else {
-                                                    return Function.apply(
-                                                        defaultFormatterFunction,
-                                                        [duration]);
-                                                  }
-                                                },
                                               ),
                                             ),
                                             const Expanded(child: SizedBox()),
@@ -329,8 +316,6 @@ class workout_Show extends ConsumerWidget {
                                       .withOpacity(0.5),
                                   spreadRadius: 5,
                                   blurRadius: 5,
-                                  offset: Offset(
-                                      0, 0), // changes position of shadow
                                 ),
                               ],
                               border: Border.all(

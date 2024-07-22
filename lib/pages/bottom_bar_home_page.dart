@@ -24,24 +24,6 @@ class _BottomBarHomePageState extends State<BottomBarHomePage> {
   ];
   Widget buildPage() {
     return WorkoutPage(week[pageIndex]);
-    /*switch (pageIndex) {
-      case 0:
-        return WorkoutPage(mondayWorkoutProvider);
-      case 1:
-        return WorkoutPage(tuesdayWorkoutProvider);
-      case 2:
-        return WorkoutPage(wednesdayWorkoutProvider);
-      case 3:
-        return WorkoutPage(thursdayWorkoutProvider);
-      case 4:
-        return WorkoutPage(fridayWorkoutProvider);
-      case 5:
-        return WorkoutPage(saturdayWorkoutProvider);
-      case 6:
-        return WorkoutPage(sundayWorkoutProvider);
-      default:
-        return WorkoutPage(defaultWorkoutProvider);
-    }*/
   }
 
   @override

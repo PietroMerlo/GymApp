@@ -31,7 +31,7 @@ class CreateExercise extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Crea esercizio'),
+        title: const Text('Create exercise'),
       ),
       body: Consumer(builder: (context, ref, child) {
         return FormBuilder(
@@ -160,8 +160,13 @@ class CreateExercise extends StatelessWidget {
                               rest: int.parse(_formKey
                                   .currentState!.value['rest']
                                   .toString()),
-                              notes: _formKey.currentState!.value['notes']
-                                  .toString(),
+                              notes: (_formKey.currentState!.value['notes'] !=
+                                          null &&
+                                      _formKey.currentState!.value['notes']
+                                              .trim() !=
+                                          '')
+                                  ? _formKey.currentState!.value['notes']
+                                  : null,
                             );
 
                         Navigator.of(context).pop();

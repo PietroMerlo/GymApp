@@ -11,16 +11,14 @@ class StartWorkout extends StatelessWidget {
 
   StartWorkout({super.key, required this.startedWorkoutProvider});
 
-  Widget buildPortrait(
-      NotifierProvider<Workout, List<Exercise>> currentWorkoutProvider) {
+  Widget buildPortrait() {
     return Padding(
       padding: const EdgeInsets.all(15),
-      child: workoutShow(currentWorkoutProvider),
+      child: workout_Show(startedWorkoutProvider),
     );
   }
 
-  Widget buildLandscape(
-      NotifierProvider<Workout, List<Exercise>> currentWorkoutProvider) {
+  Widget buildLandscape() {
     return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         mainAxisSize: MainAxisSize.max,
@@ -34,7 +32,7 @@ class StartWorkout extends StatelessWidget {
                   child: Column(
                     children: [
                       kMediumVerticalSpacing,
-                      Expanded(child: workoutRecap(currentWorkoutProvider)),
+                      Expanded(child: workout_Recap(startedWorkoutProvider)),
                       kMediumVerticalSpacing,
                     ],
                   ),
@@ -47,21 +45,11 @@ class StartWorkout extends StatelessWidget {
               child: Row(
             children: [
               const Expanded(flex: 1, child: SizedBox()),
-              Expanded(flex: 6, child: workoutShow(currentWorkoutProvider)),
+              Expanded(flex: 6, child: workout_Show(startedWorkoutProvider)),
               const Expanded(flex: 1, child: SizedBox()),
             ],
           ))
         ]);
-  }
-
-  Widget workoutRecap(
-      NotifierProvider<Workout, List<Exercise>> currentWorkout) {
-    return workout_Recap(currentWorkout);
-  }
-
-  ConsumerWidget workoutShow(
-      NotifierProvider<Workout, List<Exercise>> currentWorkout) {
-    return workout_Show(currentWorkout);
   }
 
   @override
@@ -78,8 +66,6 @@ class StartWorkout extends StatelessWidget {
             })),
         body: Padding(
             padding: const EdgeInsets.all(10),
-            child: (isLandscape)
-                ? buildLandscape(startedWorkoutProvider)
-                : buildPortrait(startedWorkoutProvider)));
+            child: (isLandscape) ? buildLandscape() : buildPortrait()));
   }
 }
